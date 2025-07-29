@@ -7,7 +7,17 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: "@", replacement: "/src" },
-      { find: "@components", replacement: path.resolve(__dirname, "src/components") }, 
-    ],    
+      { find: "@components", replacement: path.resolve(__dirname, "src/components") },
+    ],
+  },
+  server: {
+    port: 5173,
+    proxy: {     
+      '/api': {
+        target: 'http://localhost:8083',
+        changeOrigin: true,
+        secure: false
+      },
+    },
   },
 });
