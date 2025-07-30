@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardBody, Typography } from "@material-tailwind/react";
-import { useReviews } from "./useReviews"; // Assuming useReviews is in the same directory
+import { useReviews } from "./useReviews";
 
 const reviews = [
   {
@@ -38,6 +38,9 @@ export default function ReviewPage() {
             <CardBody>
               <Typography variant="h6" color="blue-gray">
                 {review.username}
+              </Typography>
+              <Typography variant="h6" color="blue-gray">
+                {review.createdAt ? new Date(review.createdAt).toLocaleDateString() : "Unknown date"}
               </Typography>
               <Typography variant="small" className="text-gray-500">
                     {new Date(review.createdAt).toLocaleString()}

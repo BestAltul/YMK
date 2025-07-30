@@ -22,9 +22,11 @@ export default function Header() {
                 Review
               </Button>
           </Link>
-          <Button variant="outlined" color="white" ripple={true}>
-            Login
-          </Button>
+          <Link to="/login">
+            <Button variant="outlined" color="white" ripple={true}>
+              Login
+            </Button>
+          </Link>
           <Button color="white" ripple={true}>
             Sign Up
           </Button>

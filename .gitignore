@@ -33,3 +33,5 @@ dist-ssr
 
 # Dependencies
 node_modules
+
+vite.config.js
