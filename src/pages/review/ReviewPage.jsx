@@ -39,6 +39,10 @@ export default function ReviewPage() {
               <Typography variant="h6" color="blue-gray">
                 {review.username}
               </Typography>
+              <Typography variant="h6" color="blue-gray">
+                {review.createdAt ? new Date(review.createdAt).toLocaleDateString() : "Unknown date"}
+              </Typography>
+
               <Typography variant="small" className="my-2 text-gray-700">
                 {review.content}
               </Typography>

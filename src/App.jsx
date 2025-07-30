@@ -3,6 +3,7 @@ import { Dashboard, Auth } from "@/layouts";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/home/Home";
 import ReviewPage from "./pages/review/ReviewPage";
+import Login from "./pages/auth/login/Login";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/review" element={<ReviewPage />} />
       <Route path="/auth/*" element={<Auth />} />
+      <Route path="/login/*" element={<Login />} />
       <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
     </Routes>
     </MainLayout>
