@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import EmailInputWithCheck from "./EmailInputWithCheck";
+import { checkAnswersAPI } from "./chekcAnswerAPI";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -9,11 +12,38 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showAnswers, setShowAnswers] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!emailValid) return;
-    console.log("Login with", email, password, answersList);
+
+    try {
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+      if (questions.length > 0) {
+        const formattedAnswers = questions.map((q, i) => ({
+          entryId: q.entryId,
+          answer: answersList[i]?.trim() || "",
+        }));
+
+        const data = await checkAnswersAPI(email, formattedAnswers, timezone);
+
+        const token = data["Authentication successful"];
+        localStorage.setItem("jwt", token);
+
+        navigate("/profile");
+      } else {
+        const data = await loginWithPassword(email, password);
+        const token = data["Authentication successful"];
+        localStorage.setItem("jwt", token);
+        // navigate("/profile");
+      }
+    } catch (err) {
+      console.error("Login failed:", err);
+      toast.error(err.response?.data?.message || "Login failed");
+    }
   };
 
   return (
