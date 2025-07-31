@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ContactTypePicker from "../ContactTypePicker";
+//import ContactTypePicker from "../ContactTypePicker";
 
 export default function PersonalFields() {
   const [birthday, setBirthday] = useState("");
